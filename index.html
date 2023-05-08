@@ -14,14 +14,240 @@
 </head>
 
 <body>
-    <h1>jQuery</h1>
-    <p>write less, do more.</p>
+
+    <h1 id="jq" class="jq">jQuery</h1>
+    <p class="jq p"></p>
+
+    <h1 id="js">Javascript</h1>
+
+    <hr>
+
+    <b class="el">First</b>
+    <b class="el">Second</b>
+    <b class="el">Last</b>
+
+    <hr>
+
+    <table>
+        <tr>
+            <td>Data 1</td>
+            <td>Data 1</td>
+            <td>Data 1</td>
+        </tr>
+        <tr>
+            <td>Data 2</td>
+            <td>Data 2</td>
+            <td>Data 2</td>
+        </tr>
+        <tr>
+            <td>Data 3</td>
+            <td>Data 3</td>
+            <td>Data 3</td>
+        </tr>
+        <tr>
+            <td>Data 4</td>
+            <td>Data 4</td>
+            <td>Data 4</td>
+        </tr>
+    </table>
+    <hr>
+    <h3 class="same">Heading 3</h3>
+    <p class="same">Paragraph 1</p>
+    <p class="same">Paragraph 2</p>
+    <p class="same">Paragraph 3</p>
+    <hr>
+    <img src="2.jpg" alt="" width="350px" height="500px" style="object-fit: cover;">
+    <hr>
+    <ul class="list">
+        <li>Graphic Design</li>
+        <li>Web Design</li>
+        <li>Programming</li>
+        <ul>
+            <li>C++</li>
+            <li>Java</li>
+            <li>Python</li>
+            <li>Javascript</li>
+            <ul>
+                <li>Angular</li>
+                <li>React</li>
+                <li>Vue</li>
+            </ul>
+        </ul>
+    </ul>
+    <hr>
+    <h1 class="design">Cypher Punk</h1>
+    <button id="b1">Show</button>
+    <button id="b2">Hide</button>
+    <button id="b3">Toggle</button>
+    <hr>
+    <h2> CSS Manipulation </h2>
+    <hr>
+    <div>
+        Get and Set Width and Height
+    </div>
+    <hr>
+    <section>
+        innerWidth() and innerHeight() Methods
+    </section>
+    <hr>
+    <h4 title="Title" data="Data">Set Multiple Attributes</h4>
+    <button id="btnTitle">Get Title</button>
+    <button id="btnData">Get Data</button>
+    <button id="btnSetAttribute">Set Attribute</button>
+    <button id="btnRemoveAttribute">Remove Attribute</button>
+    <hr>
+
     <script src="./jquery-3.6.4.min.js"></script>
     <script>
         $("document").ready(function () {
-            alert("Hello World!");
+            console.log("jQuery initialized!");
+
+            // Element selector
+            $(".p").html("write less, do more.");
+
+            // this keyword
+            $("h1").click(function () {
+                var h1El = $(this).html();
+                // console.log(h1El);
+            });
+
+            // ID selector
+            $("#jq").click(function () {
+                var jQid = $(this).html();
+                // console.log(jQid);
+            });
+
+            // Class selector
+            $(".jq:last").click(function () {
+                var jQclass = $(this).css("display", "none");
+                // console.log(jQclass);
+            });
+
+            // Multi selector
+            $(".jq,#jq,#js").click(function () {
+                // $(this).html("Clicked!");
+                console.log("clicked!");
+                $(this).css("color", "red");
+            });
+
+            // First and last element
+            $('.el:first').css("background-color", "dodgerblue");
+            $('.el:last').css("background-color", "tomato");
+
+            // Odd/Even element
+            $("tr:odd").css('background-color', 'silver');
+            $("tr:even").css('color', 'limegreen');
+
+            // Class with element selector
+            $("h3.same").css("color", "firebrick");
+
+            // contains selector
+            $("p.same:contains(rap)").css("color", "blueviolet");
+
+            // HTML Attribute Method
+            $('img').click(function () {
+                $(this).attr('src', '1.jpg');
+            });
+
+            // Descendants (Children Method)
+            // $('ul').children('li').css("color", "orange");
+
+            // Descendants (Find Method)
+            // $('ul').find('li').css("color", "violet");
+
+            // addClass and removeClass
+            $('#b1').click(function () {
+                $('h1').addClass('design');
+            });
+
+            $('#b2').click(function () {
+                $('h1').removeClass('design');
+            });
+
+            $('#b3').click(function () {
+                $('h1').toggleClass('design');
+            });
+
+            // Get first element
+            // $('ul.list').children('li:first-child').addClass('red');
+            $('ul.list').children('li').first().addClass('green');
+
+            // :eq() and :nth-child() 
+            // $('ul.list').children('li:nth-child(2)').text('UI/UX Design');
+            $('ul.list').children('li').eq(1).text('ChatGPT');
+
+            // CSS Manipulation
+            // single
+            $('h2').css('font-size', '80px');
+            // multi
+            $('h2').css({
+                'color': 'white',
+                'background-color': 'dodgerblue',
+                'border-radius': '10px',
+                'text-align': 'center'
+            });
+
+            // Get and Set Width and Height
+            $('div').width('500px').height('300px').css({
+                'color': 'white',
+                'background-color': 'crimson',
+            });
+
+            // innerWidth() and innerHeight() Methods
+            // innerHeight = element + padding
+            console.log('InnerHeight: ' + $('section').innerHeight() + 'px');
+            // InnerHeight : 150px + 64px =  214px
+            console.log('InnerWidth: ' + $('section').innerWidth() + 'px');
+            // InnerWidth : 200px + 64px =  264px
+
+            // OuterHeigth = element + padding + border
+            console.log('OuterHeight: ' + $('section').outerHeight() + 'px');
+            console.log('OuterWidth: ' + $('section').outerWidth() + 'px');
+
+            // Set Multiple Attributes
+            $('#btnTitle').click(function () {
+                console.log($('h4').attr('title'));
+            });
+
+            $('#btnData').click(function () {
+                console.log($('h4').attr('data'));
+            });
+
+            $('#btnSetAttribute').click(function () {
+                $('h4').attr({
+                    "title": "This is Title",
+                    "data": "This is Data"
+                });
+                console.log("Attribute set success!");
+            });
+
+            $('#btnRemoveAttribute').click(function () {
+                $('h4').removeAttr('title');
+            });
         });
     </script>
+    <style>
+        .design {
+            color: goldenrod;
+            font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+            letter-spacing: 3px;
+            font-style: italic;
+        }
+
+        .green {
+            color: limegreen;
+        }
+
+        section {
+            height: 150px;
+            width: 200px;
+            background-color: orange;
+            padding: 2em;
+            /* 32px top and bottom -> 64px */
+            border: 5px solid brown;
+            margin: 2em;
+        }
+    </style>
 </body>
 
 </html>
